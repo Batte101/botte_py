@@ -15,12 +15,12 @@ async def help(msg):
     hlp += 'play <YT_URL>`\n'
     hlp += '**' + pr + 'pause** - pause music.\n'
     hlp += '**' + pr + 'resume** - resume music.\n'
+    hlp += '**' + pr + 'loop** - toggle on/off looping tracks.\n'
     hlp += '**' + pr + 'skip** - skip current track.\n'
     hlp += '**' + pr + 'join** - join voice channel.\n'
     hlp += '**' + pr + 'leave** - leave voice channel.\n'
     hlp += '**' + pr + 'queue** - show music queue.\n'
-    hlp += '**' + pr + 'remove** - removes track from queue.\nFormat: `' + pr + 'remove <queue_num>`\n'
-    hlp += "For now there is no repeat mode, I'll add it as soon as I want to.\n\n"
+    hlp += '**' + pr + 'remove** - removes track from queue.\nFormat: `' + pr + 'remove <queue_num>`\n\n'
     hlp += '**' + pr + 'roll** - rolls a dice.\nFormat: `' + pr + 'roll d20` or `' + pr + 'roll 2d4`\n\n'
     hlp += "Also I can talk. Really. Ping me or DM me, and if I'm free, I'll answer.\n\n"
     hlp += '(If you are a mod - type `' + pr + 'mod_help` for another list)'
@@ -256,6 +256,12 @@ async def processing(msg):
             await msg.channel.send('You are not listening.')
             return
         await voice.skip(msg)
+        return
+    if s.startswith('loop'):
+        if vc and (not msg.author.voice or vc.channel != msg.author.voice.channel):
+            await msg.channel.send('You are not listening.')
+            return
+        await voice.loop(msg)
         return
     if s.startswith('pause'):
         if vc and (not msg.author.voice or vc.channel != msg.author.voice.channel):
