@@ -50,7 +50,7 @@ async def mod_help(msg):
 async def own_help(msg):
     title = 'Это - хэлп.'
     pr = gl.settings['prefix']
-    hlp = '**' + pr + "add_mod** - add moderator.\nFormat: `" + pr + "add mod ID`\n"
+    hlp = '**' + pr + "add_mod** - add moderator.\nFormat: `" + pr + "add_mod ID`\n"
     hlp += '**' + pr + "remove_mod** - remove moderator.\nFormat: `" + pr + "remove_mod ID`\n\n"
     hlp += "**" + pr + "map** - shows every channel in all Guilds and lets to choose one to listen.\n"
     hlp += "**" + pr + "memb** - shows every member in all Guilds and lets to choose one to DM.\n"
