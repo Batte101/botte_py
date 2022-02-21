@@ -6,7 +6,6 @@ import json
 import time
 import json_work
 import asyncio
-import threading
 
 
 yt_conf = {
@@ -67,11 +66,10 @@ async def play(ctx, query):
 
     json_work.queue_add(vc.guild.id, query)
     await gl.send_msg(ctx.channel, text='Added to queue.')
-    print(gl.queue[str(ctx.guild.id)]['player'])
+    print("Player check", gl.queue[str(ctx.guild.id)]['player'])
     if gl.queue[str(ctx.guild.id)]['player']:
         return
     else:
-        print('Player made.')
         await player(ctx)
 
 
@@ -79,28 +77,41 @@ async def player(ctx):
     vc = ctx.guild.voice_client
     gl.queue[str(ctx.guild.id)]['player'] = True
     while gl.queue[str(ctx.guild.id)]['player']:
-        print('In loop.')
         try:
             try:
-                print('Try source.')
-                video, source = search(gl.queue[str(ctx.guild.id)]['tracks'][0])
-                print('Source got.')
+                if not gl.queue[str(ctx.guild.id)]['loop']:
+                    video, source = search(gl.queue[str(ctx.guild.id)]['tracks'][0])
             except utils.DownloadError:
                 await gl.send_msg(ctx.channel, text="I am not playing this. I'm 0 years old! (Age restriction, find another version)")
                 json_work.queue_remove(vc.guild.id, gl.queue[str(ctx.guild.id)]['tracks'][0])
             else:
-                await ctx.channel.send('Now playing: ``' + video['title'] + '``\n' + video['webpage_url'])
+                if not gl.queue[str(ctx.guild.id)]['loop']:
+                    await ctx.channel.send('Now playing: ``' + video['title'] + '``\n' + video['webpage_url'])
                 vc.play(FFmpegPCMAudio(source, **ffmpeg_conf))
-                json_work.queue_remove(vc.guild.id, gl.queue[str(ctx.guild.id)]['tracks'][0])
+
+                if not gl.queue[str(ctx.guild.id)]['loop']:
+                    json_work.queue_remove(vc.guild.id, gl.queue[str(ctx.guild.id)]['tracks'][0])
 
                 while vc.is_playing() or vc.is_paused():
                     await asyncio.sleep(1)
-                    print('Loop')
         except Exception:
-            print('List is over')
             gl.queue[str(ctx.guild.id)]['player'] = False
+            gl.queue[str(ctx.guild.id)]['loop'] = False
             await leave(ctx)
     return
+
+
+async def loop(msg):
+    vc = msg.guild.voice_client
+    if vc and (vc.is_connected() or vc.is_paused()):
+        if gl.queue[str(msg.guild.id)]['loop']:
+            gl.queue[str(msg.guild.id)]['loop'] = False
+            await gl.send_msg(msg.channel, text="Loop is off.")
+        else:
+            gl.queue[str(msg.guild.id)]['loop'] = True
+            await gl.send_msg(msg.channel, text="Loop is on.")
+    else:
+        await gl.send_msg(msg.channel, text='There is nothing to loop.')
 
 
 async def pause(msg):
@@ -125,6 +136,7 @@ async def skip(msg):
     vc = msg.guild.voice_client
     if vc.is_playing():
         vc.stop()
+        gl.queue[str(msg.guild.id)]['loop'] = False
         await gl.send_msg(msg.channel, text='OK')
     else:
         await gl.send_msg(msg.channel, text='I am not playing anything rn.')
@@ -141,7 +153,10 @@ async def leave(msg):
 
 
 async def queue(msg):
-    list = ''
+    if gl.queue[str(msg.guild.id)]['loop']:
+        list = 'Loop is **ON**\n\n'
+    else:
+        list = 'Loop is **OFF**\n\n'
     for i in range(len(gl.queue[str(msg.guild.id)]['tracks'])):
         video, source = search(gl.queue[str(msg.guild.id)]['tracks'][i])
         dur = time.strftime("%M:%S", time.gmtime(video['duration']))
