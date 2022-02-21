@@ -84,6 +84,7 @@ def queue_clear():
     for guild in gl.bot.guilds:
         gl.queue[str(guild.id)] = {}
         gl.queue[str(guild.id)]['player'] = False
+        gl.queue[str(guild.id)]['loop'] = False
         gl.queue[str(guild.id)]['tracks'] = []
     with open('queue.json', 'w') as j:
         json.dump(gl.queue, j)
