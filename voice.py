@@ -60,13 +60,14 @@ async def play(ctx, query):
             await gl.send_msg(ctx.channel, text="I'm busy now.")
             return
 
-    json_work.queue_clear()
-    await gl.send_msg(ctx.channel, text='One sec...')
+        json_work.queue_clear()
+        await gl.send_msg(ctx.channel, text='One sec...')
     await join(ctx)
     vc = ctx.guild.voice_client
 
     json_work.queue_add(vc.guild.id, query)
     await gl.send_msg(ctx.channel, text='Added to queue.')
+    print(gl.queue[str(ctx.guild.id)]['player'])
     if gl.queue[str(ctx.guild.id)]['player']:
         return
     else:
@@ -89,7 +90,7 @@ async def player(ctx):
                 json_work.queue_remove(vc.guild.id, gl.queue[str(ctx.guild.id)]['tracks'][0])
             else:
                 await ctx.channel.send('Now playing: ``' + video['title'] + '``\n' + video['webpage_url'])
-                vc.play(FFmpegPCMAudio(source, **ffmpeg_conf, executable="ffmpeg.exe"))
+                vc.play(FFmpegPCMAudio(source, **ffmpeg_conf))
                 json_work.queue_remove(vc.guild.id, gl.queue[str(ctx.guild.id)]['tracks'][0])
 
                 while vc.is_playing() or vc.is_paused():
