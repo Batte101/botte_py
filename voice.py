@@ -99,6 +99,7 @@ async def player(ctx):
         except Exception:
             print('List is over')
             gl.queue[str(ctx.guild.id)]['player'] = False
+            leave(ctx)
     return
 
 
@@ -134,7 +135,7 @@ async def leave(msg):
     if vc:
         await vc.disconnect()
         json_work.queue_clear()
-        await gl.send_msg(msg.channel, text='Alright.')
+        await gl.send_msg(msg.channel, text="Alright, that's all.")
     else:
         await gl.send_msg(msg.channel, text='I am not in any VC currently.')
 
