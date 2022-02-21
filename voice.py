@@ -59,7 +59,7 @@ async def play(ctx, query):
         if len(vc.channel.members) > 1 and vc.channel != ctx.author.voice.channel:
             await gl.send_msg(ctx.channel, text="I'm busy now.")
             return
-
+    else:
         json_work.queue_clear()
         await gl.send_msg(ctx.channel, text='One sec...')
     await join(ctx)
