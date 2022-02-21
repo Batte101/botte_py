@@ -82,7 +82,7 @@ async def player(ctx):
                 if not gl.queue[str(ctx.guild.id)]['loop']:
                     video, source = search(gl.queue[str(ctx.guild.id)]['tracks'][0])
             except utils.DownloadError:
-                await gl.send_msg(ctx.channel, text="I am not playing this. I'm 0 years old! (Age restriction, find another version)")
+                await gl.send_msg(ctx.channel, text="I am not playing this. I'm 0 years old! (Age restriction, find another video)")
                 json_work.queue_remove(vc.guild.id, gl.queue[str(ctx.guild.id)]['tracks'][0])
             else:
                 if not gl.queue[str(ctx.guild.id)]['loop']:
