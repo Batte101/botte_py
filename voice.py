@@ -155,7 +155,6 @@ async def remove(msg, num):
     gl.queue[str(msg.guild.id)]['tracks'].pop(num - 1)
     with open('queue.json', 'w') as j:
         json.dump(gl.queue, j)
-    await gl.send_msg(msg.channel, text='New queue:')
     await queue(msg)
     return
 
