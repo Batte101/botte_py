@@ -154,9 +154,10 @@ async def leave(msg):
 
 async def queue(msg):
     if gl.queue[str(msg.guild.id)]['loop']:
-        list = 'Loop is **ON**\n\n'
+        ans = 'Loop is **ON**\n\n'
     else:
-        list = 'Loop is **OFF**\n\n'
+        ans = 'Loop is **OFF**\n\n'
+    list = ''
     for i in range(len(gl.queue[str(msg.guild.id)]['tracks'])):
         video, source = search(gl.queue[str(msg.guild.id)]['tracks'][i])
         dur = time.strftime("%M:%S", time.gmtime(video['duration']))
@@ -164,7 +165,7 @@ async def queue(msg):
         print(video)
     if list == '':
         list = '**Queue is empty.**'
-    return list
+    return ans + list
 
 
 async def remove(msg, num):
