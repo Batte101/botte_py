@@ -99,7 +99,7 @@ async def player(ctx):
         except Exception:
             print('List is over')
             gl.queue[str(ctx.guild.id)]['player'] = False
-            leave(ctx)
+            await leave(ctx)
     return
 
 
