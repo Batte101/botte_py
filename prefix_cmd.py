@@ -19,7 +19,8 @@ async def help(msg):
     hlp += '**' + pr + 'join** - join voice channel.\n'
     hlp += '**' + pr + 'leave** - leave voice channel.\n'
     hlp += '**' + pr + 'queue** - show music queue.\n'
-    hlp += '**' + pr + 'remove** - removes track from queue.\nFormat: `' + pr + 'remove <queue_num>`\n\n'
+    hlp += '**' + pr + 'remove** - removes track from queue.\nFormat: `' + pr + 'remove <queue_num>`\n'
+    hlp += "For now there is no repeat mode, I'll add it as soon as I want to.\n\n"
     hlp += '**' + pr + 'roll** - rolls a dice.\nFormat: `' + pr + 'roll d20` or `' + pr + 'roll 2d4`\n\n'
     hlp += "Also I can talk. Really. Ping me or DM me, and if I'm free, I'll answer.\n\n"
     hlp += '(If you are a mod - type `' + pr + 'mod_help` for another list)'
