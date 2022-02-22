@@ -17,7 +17,6 @@ async def help(msg):
     hlp += '**' + pr + 'resume** - resume music.\n'
     hlp += '**' + pr + 'loop** - toggle on/off looping tracks.\n'
     hlp += '**' + pr + 'skip** - skip current track.\n'
-    hlp += '**' + pr + 'join** - join voice channel.\n'
     hlp += '**' + pr + 'leave** - leave voice channel.\n'
     hlp += '**' + pr + 'queue** - show music queue.\n'
     hlp += '**' + pr + 'remove** - removes track from queue.\nFormat: `' + pr + 'remove <queue_num>`\n\n'
@@ -60,7 +59,8 @@ async def own_help(msg):
     hlp += "reply @@ msg_ID Text`\n"
     hlp += '**' + pr + "tp** - typing in listened channel/DM.\n"
     hlp += "**" + pr + "edit** - edits previous msg.\nFormat: `" + pr + "edit msg_ID @old @new in ch_ID`\n"
-    hlp += '**' + pr + "delete** - delete message.\nFormat: `" + pr + "delete msg_ID in ch_ID`\n"
+    hlp += '**' + pr + "delete** - delete message.\nFormat: `" + pr + "delete msg_ID in ch_ID`\n\n"
+    hlp += '**' + pr + 'join** - join voice channel.\n\n'
     hlp += "**" + pr + "status** - shows what ID is now listening.\n\n"
     hlp += "**Also bot:**\nListens for every DM and copy msg to all owner's accounts\n"
     hlp += "Listens for links and DM them for checking (bot security)\n"
