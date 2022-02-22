@@ -63,7 +63,8 @@ async def play(ctx, query):
         await gl.send_msg(ctx.channel, text='One sec...')
     await join(ctx)
     vc = ctx.guild.voice_client
-
+    if vc is None:
+        return
     json_work.queue_add(vc.guild.id, query)
     await gl.send_msg(ctx.channel, text='Added to queue.')
     print("Player check", gl.queue[str(ctx.guild.id)]['player'])
