@@ -133,8 +133,8 @@ async def processing(msg):
                 return
             # Проверка статуса
             if s.startswith('status'):
-                ans = 'Channel ID: **' + str(gl.settings['channel']) + '**\nDM ID: **' + str(
-                    gl.settings['DM']) + '**'
+                ans = 'Channel ID: **<#' + str(gl.settings['channel']) + '>**\nDM ID: **<@!' + str(
+                    gl.settings['DM']) + '>**'
                 ans += '\nTyping: **' + str(gl.typing) + '**'
                 embed = discord.Embed(title='Status', description=ans, colour=0x8ac9db)
                 await msg.author.send(embed=embed)
