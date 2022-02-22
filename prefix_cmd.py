@@ -242,7 +242,7 @@ async def processing(msg):
 
     # Голос
     vc = msg.guild.voice_client
-    if s.startswith('join'):
+    if s.startswith('join') and checks.own_check(msg):
         await voice.join(msg)
         return
     if s.startswith('play'):
