@@ -20,7 +20,7 @@ async def help(msg):
     hlp += '**' + pr + 'leave** - leave voice channel.\n'
     hlp += '**' + pr + 'queue** - show music queue.\n'
     hlp += '**' + pr + 'remove** - removes track from queue.\nFormat: `' + pr + 'remove <queue_num>`\n'
-    hlp += "Some of the tracks won't play anyhow because of YT bullshit, sorry. Listen for smth else or thy another link ;)\n\n"
+    hlp += "Some of the tracks won't play anyhow because of YT bullshit, sorry. Listen for smth else or try another link ;)\n\n"
     hlp += '**' + pr + 'roll** - rolls a dice.\nFormat: `' + pr + 'roll d20` or `' + pr + 'roll 2d4`\n\n'
     hlp += "Also I can talk. Really. Ping me or DM me, and if I'm free, I'll answer.\n\n"
     hlp += '(If you are a mod - type `' + pr + 'mod_help` for another list)'
