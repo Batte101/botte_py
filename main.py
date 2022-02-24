@@ -79,7 +79,7 @@ async def on_message(msg):
         await prefix_cmd.processing(msg)
 
     # Парсинг ссылок в ЛС owners (проверка на ботов)
-    if (msg.content.find('http') != -1 or msg.content.find('.com') != -1) and not checks.DM_check(msg) and msg.content.find('tenor.com') == -1:
+    if (msg.content.find('http') != -1 or msg.content.find('.com') != -1) and not checks.DM_check(msg) and msg.content.find('tenor.com') == -1 and  msg.content.find('youtube.com') == -1:
         if checks.own_check(msg):
             return
         for o in gl.settings['owners']:
