@@ -210,10 +210,10 @@ async def processing(msg):
             for user in msg.mentions:
                 if role in user.roles:
                     await user.remove_roles(role)
-                    # await msg.send(random.choice(gl.gifs['unbonk']))
+                    # await msg.channel.send(random.choice(gl.gifs['unbonk']))
                 else:
                     await user.add_roles(role)
-                    await msg.send(random.choice(gl.gifs['bonk']))
+                    await msg.channel.send(random.choice(gl.gifs['bonk']))
         # В каналах
         if not checks.DM_check(msg):
             # Кик
