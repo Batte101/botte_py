@@ -114,8 +114,7 @@ async def processing(msg):
                 return
             # Карта серверов (для owner)
             if s.startswith('map'):
-                for id in gl.settings['guilds']:
-                    guild = gl.bot.get_guild(id)
+                for guild in gl.bot.guilds:
                     embed, sels = channel_map(guild)
                     await msg.author.send(embed=embed, components=[sels])
                 gl.interaction = await gl.bot.wait_for("select_option", check=lambda i: i.custom_id == "select0")
@@ -124,8 +123,7 @@ async def processing(msg):
                 return
             # Карта участников (для owner)
             if s.startswith('memb'):
-                for id in gl.settings['guilds']:
-                    guild = gl.bot.get_guild(id)
+                for guild in gl.bot.guilds:
                     embed, sels = member_map(guild)
                     await msg.author.send(embed=embed, components=[sels])
                 gl.interaction = await gl.bot.wait_for("select_option", check=lambda i: i.custom_id == "select1")
