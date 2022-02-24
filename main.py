@@ -33,12 +33,6 @@ async def on_ready():
 
     gl.settings['channel'] = 0
     gl.settings['DM'] = 0
-    guilds = []
-    for g in bot.guilds:
-        guilds.append(g.id)
-    gl.settings['guilds'] = guilds
-    with open('config.json', 'w') as j:
-        json.dump(gl.settings, j)
 
     json_work.queue_clear()
 
