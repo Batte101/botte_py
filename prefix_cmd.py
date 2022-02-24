@@ -39,6 +39,7 @@ async def mod_help(msg):
     hlp += 'results of roll will post.\nEvery @ will change to a winner ping. Also you can '
     hlp += 'attach pictures)\n'
     hlp += '**' + pr + 'kick** - you know, what it does.\nFormat: `' + pr + 'kick @Douchebag`\n'
+    hlp += '**' + pr + "bonk** - sends 'em to HORNY JAIL. Also unbonks them.\nFormat: `" + pr + 'bonk @Horny`\n'
     hlp += '**' + pr + "prefix** - changes my prefix.\nFormat: `" + pr + 'prefix !@#$&? (i dunno)`\n\n'
     hlp += "If something wrong - ping or DM me. I'll fix as soon as I can."
     embed = discord.Embed(title=title, description=hlp, url='https://www.youtube.com/watch?v=FC0rsdJHkek',
