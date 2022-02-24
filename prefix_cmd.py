@@ -206,7 +206,7 @@ async def processing(msg):
             return
         # Bonk
         if s.startswith('bonk'):
-            role = discord.utils.get(lambda role: role.name == gl.settings['mute_role'], msg.guild.roles)
+            role = discord.utils.get(msg.guild.roles, name = gl.settings['mute_role'])
             for user in msg.mentions:
                 if role in user.roles:
                     await gl.bot.remove_roles(user, role)
