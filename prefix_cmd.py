@@ -209,10 +209,10 @@ async def processing(msg):
             role = discord.utils.get(msg.guild.roles, name = gl.settings['mute_role'])
             for user in msg.mentions:
                 if role in user.roles:
-                    await gl.bot.remove_roles(user, role)
+                    await user.remove_roles(role)
                     # await msg.send(random.choice(gl.gifs['unbonk']))
                 else:
-                    await gl.bot.add_roles(user, role)
+                    await user.add_roles(role)
                     await msg.send(random.choice(gl.gifs['bonk']))
         # В каналах
         if not checks.DM_check(msg):
