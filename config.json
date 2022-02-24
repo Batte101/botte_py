@@ -2,9 +2,10 @@
   "name": "Botte",
   "token": "token",
   "prefix": "~",
-  "hello_ch": [796559321893699608, 661155401194143756],
-  "owners": [327432696919883778],
-  "mods": [425332699637481482, 557291025379491847],
+  "hello_ch": [],
+  "mute_role": "Role name",
+  "owners": [],
+  "mods": [],
   "channel": 0,
   "DM": 0
 }
