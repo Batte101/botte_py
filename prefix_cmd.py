@@ -204,6 +204,16 @@ async def processing(msg):
         if s.startswith('pick'):
             await random_pick(s[5:], msg)
             return
+        # Bonk
+        if s.startswith('bonk'):
+            role = discord.utils.get(lambda role: role.name == gl.settings['mute_role'], msg.guild.roles)
+            for user in msg.mentions:
+                if role in user.roles:
+                    await gl.bot.remove_roles(user, role)
+                    # await msg.send(random.choice(gl.gifs['unbonk']))
+                else:
+                    await gl.bot.add_roles(user, role)
+                    await msg.send(random.choice(gl.gifs['bonk']))
         # В каналах
         if not checks.DM_check(msg):
             # Кик
