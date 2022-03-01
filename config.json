@@ -3,6 +3,7 @@
   "token": "token",
   "prefix": "~",
   "hello_ch": [],
+  "mod_role": ["Role ID"],
   "mute_role": "Role name",
   "owners": [],
   "mods": [],
