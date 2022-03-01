@@ -11,7 +11,10 @@ def own_check(msg):
 
 def mod_check(msg):
     for r_id in gl.settings['mod_roles']:
-        role = discord.utils.get(msg.guild.roles, id=r_id)
+        try:
+            role = discord.utils.get(msg.guild.roles, id=r_id)
+        except Exception:
+            continue
         if role in msg.author.roles:
             return True
     if msg.author.id in gl.settings['mods'] or msg.author.id in gl.settings['owners']:
