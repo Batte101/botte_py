@@ -95,15 +95,11 @@ async def player(ctx):
 
                 while vc.is_playing() or vc.is_paused():
                     await asyncio.sleep(1)
+                    print(vc)
                     if vc.channel and len(vc.channel.members) == 1:
                         await vc.disconnect()
                         json_work.queue_clear()
                         print('Idle dc.')
-                        return
-                    vc = ctx.guild.voice_client
-                    if vc is None:
-                        json_work.queue_clear()
-                        print('Crash dc.')
                         return
         except Exception:
             gl.queue[str(ctx.guild.id)]['player'] = False
