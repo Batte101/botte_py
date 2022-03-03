@@ -98,6 +98,7 @@ async def player(ctx):
                     if vc.channel and len(vc.channel.members) == 1:
                         await vc.disconnect()
                         json_work.queue_clear()
+                        print('Idle dc.')
                         return
         except Exception:
             gl.queue[str(ctx.guild.id)]['player'] = False
@@ -153,6 +154,7 @@ async def leave(msg):
         await vc.disconnect()
         json_work.queue_clear()
         await gl.send_msg(msg.channel, text="Alright, that's all.")
+        print('Player dc.')
     else:
         await gl.send_msg(msg.channel, text='I am not in any VC currently.')
 
@@ -178,13 +180,4 @@ async def remove(msg, num):
     with open('queue.json', 'w') as j:
         json.dump(gl.queue, j)
     await queue(msg)
-    return
-
-
-async def idle_check(vc):
-    print('Idle check.')
-    if vc.channel and len(vc.channel.members) == 1:
-        await vc.disconnect()
-        json_work.queue_clear()
-    print('Idle dc.')
     return
