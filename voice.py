@@ -95,6 +95,7 @@ async def player(ctx):
 
                 while (vc.is_playing() or vc.is_paused()) and vc:
                     await asyncio.sleep(1)
+                    vc = msg.guild.voice_client
         except Exception:
             gl.queue[str(ctx.guild.id)]['player'] = False
             gl.queue[str(ctx.guild.id)]['loop'] = False
