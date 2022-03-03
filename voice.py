@@ -93,7 +93,7 @@ async def player(ctx):
                 if not gl.queue[str(ctx.guild.id)]['loop']:
                     json_work.queue_remove(vc.guild.id, gl.queue[str(ctx.guild.id)]['tracks'][0])
 
-                while vc.is_playing() or vc.is_paused():
+                while (vc.is_playing() or vc.is_paused()) and vc:
                     await asyncio.sleep(1)
         except Exception:
             gl.queue[str(ctx.guild.id)]['player'] = False
