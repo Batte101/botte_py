@@ -100,6 +100,11 @@ async def player(ctx):
                         json_work.queue_clear()
                         print('Idle dc.')
                         return
+                    vc = ctx.guild.voice_client
+                    if vc is None:
+                        json_work.queue_clear()
+                        print('Crash dc.')
+                        return
         except Exception:
             gl.queue[str(ctx.guild.id)]['player'] = False
             gl.queue[str(ctx.guild.id)]['loop'] = False
