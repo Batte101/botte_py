@@ -98,6 +98,7 @@ async def player(ctx):
                     print(vc)
                     if vc.channel and len(vc.channel.members) == 1:
                         await vc.disconnect()
+                        await vc.cleanup()
                         json_work.queue_clear()
                         print('Idle dc.')
                         return
