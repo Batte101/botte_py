@@ -95,7 +95,7 @@ async def player(ctx):
 
                 while vc.is_playing() or vc.is_paused():
                     await asyncio.sleep(1)
-                    if vc.channel and (len(vc.channel.members) == 1 or gl.bot.user not in  vc.channel.members):
+                    if vc.channel and (len(vc.channel.members) == 1 or gl.bot.user not in vc.channel.members):
                         await vc.disconnect()
                         await vc.cleanup()
                         json_work.queue_clear()
