@@ -95,6 +95,10 @@ async def player(ctx):
 
                 while vc.is_playing() or vc.is_paused():
                     await asyncio.sleep(1)
+                        if vc.channel and len(vc.channel.members) == 1:
+                            await vc.disconnect()
+                            json_work.queue_clear()
+                            return
         except Exception:
             gl.queue[str(ctx.guild.id)]['player'] = False
             gl.queue[str(ctx.guild.id)]['loop'] = False
@@ -178,14 +182,9 @@ async def remove(msg, num):
 
 
 async def idle_check(vc):
-    # vc = await gl.bot.fetch_guild(guild_id).voice_client
-    Flag = True
-    while vc and Flag:
-        await asyncio.sleep(20)
-        print('Idle check.')
-        if vc.channel and len(vc.channel.members) == 1:
-            Flag = False
-    await vc.disconnect()
-    json_work.queue_clear()
+    print('Idle check.')
+    if vc.channel and len(vc.channel.members) == 1:
+        await vc.disconnect()
+        json_work.queue_clear()
     print('Idle dc.')
     return
