@@ -95,8 +95,7 @@ async def player(ctx):
 
                 while vc.is_playing() or vc.is_paused():
                     await asyncio.sleep(1)
-                    print(vc)
-                    if vc.channel and len(vc.channel.members) == 1:
+                    if vc.channel and (len(vc.channel.members) == 1 or gl.bot.user not in  vc.channel.members):
                         await vc.disconnect()
                         await vc.cleanup()
                         json_work.queue_clear()
@@ -107,7 +106,7 @@ async def player(ctx):
             gl.queue[str(ctx.guild.id)]['loop'] = False
             await vc.disconnect()
             json_work.queue_clear()
-            await gl.send_msg(msg.channel, text="Alright, that's all.")
+            await gl.send_msg(ctx.channel, text="Alright, that's all.")
             print('Player dc.')
     return
 
