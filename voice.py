@@ -105,7 +105,10 @@ async def player(ctx):
         except Exception:
             gl.queue[str(ctx.guild.id)]['player'] = False
             gl.queue[str(ctx.guild.id)]['loop'] = False
-            await leave(ctx)
+            await vc.disconnect()
+            json_work.queue_clear()
+            await gl.send_msg(msg.channel, text="Alright, that's all.")
+            print('Player dc.')
     return
 
 
