@@ -146,7 +146,11 @@ async def skip(msg):
     vc = msg.guild.voice_client
     if vc.is_playing():
         vc.stop()
+        gl.queue[str(msg.guild.id)]['loop'] = False
         await gl.send_msg(msg.channel, text='OK')
+        if gl.queue[str(ctx.guild.id)]['loop']:
+            await asyncio.sleep(1)
+            gl.queue[str(msg.guild.id)]['loop'] = True
     else:
         await gl.send_msg(msg.channel, text='I am not playing anything rn.')
 
