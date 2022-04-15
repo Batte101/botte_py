@@ -145,8 +145,7 @@ async def resume(msg):
 async def skip(msg):
     vc = msg.guild.voice_client
     if vc.is_playing():
-        if gl.queue[str(msg.guild.id)]['loop']:
-            json_work.queue_remove(vc.guild.id, gl.queue[str(msg.guild.id)]['tracks'][0])
+        gl.queue[str(msg.guild.id)]['loop'] = False
         vc.stop()
         await gl.send_msg(msg.channel, text='OK')
     else:
