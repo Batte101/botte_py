@@ -8,7 +8,7 @@ def DM_change(id):
         gl.settings['channel'] = 0
         with open('config.json', 'w') as j:
             json.dump(gl.settings, j)
-        return '**DM <@!' + str(id) + '>**'
+        return '**DM <@!%s>**' % (id) 
     else:
         return 'Already listening.'
 
@@ -19,7 +19,7 @@ def channel_change(id):
         gl.settings['DM'] = 0
         with open('config.json', 'w') as j:
             json.dump(gl.settings, j)
-        return '**Channel <#' + str(id) + '>**'
+        return '**Channel <#%s>**' % (id) 
     else:
         return 'Already listening.'
 
